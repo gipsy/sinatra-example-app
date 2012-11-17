@@ -1,0 +1,28 @@
+<table class="table-striped">
+  <thead>
+    <tr>
+      <th>Full name</th>
+      <th>Screen name</th>
+      <th>Location</th>
+      <th>Bio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @persons.each do |person| %>
+      <tr>
+      <% location = person.at_css('.person_loc') %>
+      <% if !location.nil? %>
+        <td><%= person.at_css('.person_fulln').text.strip %></td>
+        <td><%= person.at_css('.person_scrn').text.strip %></td>
+        <td><%= location.text.strip %></td>
+        <td><%= person.at_css('.person_bio').text.strip %></td>
+      <% else %>
+        <td><%= person.at_css('.person_fulln').text.strip %></td>
+        <td><%= person.at_css('.person_scrn').text.strip %></td>
+        <td>No location info!</td>
+        <td><%= person.at_css('.person_bio').text.strip %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
