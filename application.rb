@@ -1,13 +1,12 @@
 require 'sinatra'
 require 'nokogiri'
 require 'open-uri'
+require 'slim'
 
-class FollowerWonk < Sinatra::Base
+class Application < Sinatra::Base
 
-  # new search
-  get '/' do
-    erb :index
-  end
+  # index
+  get ('/') { slim :index }
 
   # list
   post '/list' do
@@ -17,7 +16,7 @@ class FollowerWonk < Sinatra::Base
 
     data = Nokogiri::HTML(open(url))
     @persons = data.css('.person')
-    erb :list
+    slim :list
   end
 
 end

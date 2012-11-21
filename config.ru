@@ -2,6 +2,6 @@ require 'bundler'
 
 Bundler.require
 
-require './followerwonk.rb'
+require './application.rb'
 
-run FollowerWonk
+run Application
