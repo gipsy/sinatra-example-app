@@ -1,4 +1,13 @@
-form.form-search action='/list' method='post'
+form.form-horizontal action='/list' method='post'
   .input-append
-    input.span2.search-query type='text' name='post[bio]' placeholder='search'
+    input.span6 type='text' name='post[bio]' placeholder='Bio'
     button.btn type='submit' Find it!
+    button.btn type='button' Options
+  .control-group
+    label.control-label Location
+    .controls
+	  input.span2 type='text' name='post[location]'
+  .control-group
+    label.control-label Name
+    .controls
+	  input.span2 type='text' name='post[name]'

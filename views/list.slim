@@ -1,23 +1,28 @@
 ==render :slim, :'_form'
-table.table.table-striped.table-bordered
-  thead
-    tr
-      th Full name
-      th Screen name
-      th Location
-      th Bio
-  tbody
-    - @persons.each do |person|
+p test
+- if @reason
+  p #{@reason}
+
+- else  
+  table.table.table-striped.table-bordered
+    thead
       tr
-        - location = person.at_css('.person_loc')
-        - if !location.nil?
-          td = person.at_css('.person_fulln').text.strip
-          td = person.at_css('.person_scrn').text.strip
-          td = location.text.strip
-          td = person.at_css('.person_bio').text.strip
-        - else
-          td = person.at_css('.person_fulln').text.strip
-          td = person.at_css('.person_scrn').text.strip
-          td No location info!
-          td = person.at_css('.person_bio').text.strip
+        th Full name
+        th Screen name
+        th Location
+        th Bio
+    tbody
+      - @persons.nil? ? nil : @persons.each do |person|
+        tr
+          - location = person.at_css('.person_loc')
+          - if !location.nil?
+            td = person.at_css('.person_fulln').text.strip
+            td = person.at_css('.person_scrn').text.strip
+            td = location.text.strip
+            td = person.at_css('.person_bio').text.strip
+          - else
+            td = person.at_css('.person_fulln').text.strip
+            td = person.at_css('.person_scrn').text.strip
+            td No location info!
+            td = person.at_css('.person_bio').text.strip
 
