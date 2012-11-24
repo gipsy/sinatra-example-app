@@ -27,6 +27,8 @@ group :production do
   gem 'sinatra'
   gem 'sinatra-flash'
   gem 'sprockets'
+  gem 'rack'
+  gem 'rack_csrf'
   gem 'nokogiri'
   gem 'coffee-script'
   gem 'sass'
