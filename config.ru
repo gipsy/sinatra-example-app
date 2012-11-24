@@ -2,6 +2,7 @@ require 'bundler'
 
 Bundler.require
 
-require './application.rb'
+require './app/application.rb'
 
 run Application
+

@@ -1,0 +1,17 @@
+.search-block
+  form.form-horizontal action='/list' method='post'
+    .input-append
+      input.span6 type='text' name='post[bio]' placeholder='Bio'
+      button.btn type='submit' Find it!
+      button.btn.options type='button' Options
+
+    .extra-block style="display: none;"
+      .control-group
+        label.control-label Location
+        .controls
+          input.span2 type='text' name='post[location]'
+      .control-group
+        label.control-label Name
+        .controls
+          input.span2 type='text' name='post[name]'
+
