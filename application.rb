@@ -82,9 +82,9 @@ class Application < Sinatra::Application
   end
 
   %w{jpg jpeg gif png}.each do |format|
-    get '/assets/bg-main.' + format do
-      content_type('image/#{format}')
-      settings.sprockets['bg-main.' + format]
+    get '/assets/:image.' + format do |image|
+      content_type('image/' + format)
+      settings.sprockets[image + '.' + format]
     end
   end
 
