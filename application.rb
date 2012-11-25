@@ -20,17 +20,19 @@ class Application < Sinatra::Application
   register Sinatra::Flash
 
   # Config::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+  set :static, true
   set :root, File.dirname(__FILE__)
   set :sprockets, (Sprockets::Environment.new(root) { |env| env.logger = Logger.new(STDOUT) })
   set :assets_prefix, 'compiled'
   set :assets_path, File.join(root, 'public', assets_prefix)
   set :compass_gem_root, Gem.loaded_specs['compass'].full_gem_path
-  set :views, Proc.new { File.join(root, 'app/views') }
+  set :views, Proc.new { File.join(root, 'app', 'views') }
 
   configure do
     sprockets.append_path File.join(root, 'app', 'assets', 'stylesheets')
     sprockets.append_path File.join(compass_gem_root, 'frameworks', 'compass', 'stylesheets')
     sprockets.append_path File.join(root, 'app', 'assets', 'javascripts')
+    sprockets.append_path File.join(root, 'app', 'assets', 'images')
   end
 
   # we are deploying to heroku, which does not have a JVM, which YUI needs, so let's
@@ -68,7 +70,7 @@ class Application < Sinatra::Application
     slim :list
   end
 
-  #assets
+  # assets
   get '/assets/application.js' do
     content_type('application/javascript')
     settings.sprockets['application.js']
@@ -79,10 +81,10 @@ class Application < Sinatra::Application
     settings.sprockets['application.css']
   end
 
-  %w{jpg png}.each do |format|
-    get '/assets/image.#{format}' do |image|
+  %w{jpg jpeg gif png}.each do |format|
+    get '/assets/bg-main.' + format do
       content_type('image/#{format}')
-      settings.sprockets['#{image}.#{format}']
+      settings.sprockets['bg-main.' + format]
     end
   end
 

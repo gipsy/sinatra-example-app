@@ -33,5 +33,4 @@ group :production do
   gem 'coffee-script'
   gem 'sass'
   gem 'slim'
-  gem 'compass'
 end
