@@ -1,8 +1,12 @@
-use Rack::Static,
-  :urls => ['/stylesheets', '/images'],
-  :root => 'public/compiled'
 
 require 'bundler'
+# works with heroku
+
+require "config/environment"
+
+use Rails::Rack::LogTailer
+use Rails::Rack::Static
+run ActionController::Dispatcher.new
 
 Bundler.require
 
