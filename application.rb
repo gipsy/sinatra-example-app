@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # Libraries::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 require 'sinatra/base'
 require 'sinatra/flash'
@@ -35,6 +36,7 @@ class Application < Sinatra::Application
     sprockets.append_path File.join(root, 'app', 'assets', 'images')
   end
 
+
   # we are deploying to heroku, which does not have a JVM, which YUI needs, so let's
   # only require and config the compressors / minifiers for dev env
   configure :development do
@@ -53,11 +55,16 @@ class Application < Sinatra::Application
     begin
       data = params[:post]
 
-      bio = data['bio'].empty? ? nil : "q=#{data['bio']}"
-      location = data['location'].empty? ? nil : "l=#{data['location']}"
-      name = data['name'].empty? ? nil : "n=#{data['name']}"
+      @bio = data['bio']
+      bio_path = @bio.empty? ? nil : "q=#{data['bio']}"
 
-      path = [bio, location, name] * '&'
+      @location = data['location']
+      location_path = @location.empty? ? nil : "l=#{data['location']}"
+
+      @name = data['name']
+      name_path = @name.empty? ? nil : "n=#{data['name']}"
+
+      path = [bio_path, location_path, name_path] * '&'
       url = URI.escape("http://followerwonk.com/bio/?#{path}")
       puts url
 

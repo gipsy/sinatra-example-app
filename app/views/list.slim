@@ -1,4 +1,20 @@
-==render :slim, :'_form'
+.search-block
+  form.form-horizontal action='/list' method='post'
+    .input-append
+      input.span6 type='text' name='post[bio]' placeholder='#{@bio}'
+      button.btn type='submit' Find it!
+      /button.btn.options type='button' Options
+
+    .extra-block
+      .control-group
+        label.control-label Location
+        .controls
+          input.span2 type='text' name='post[location]' placeholder="#{@location}"
+      .control-group
+        label.control-label Name
+        .controls
+          input.span2 type='text' name='post[name]' placeholder="#{@name}"
+
 - if @reason
   p #{@reason}
 
@@ -18,10 +34,10 @@
             td = person.at_css('.person_fulln').text.strip
             td = person.at_css('.person_scrn').text.strip
             td = location.text.strip
-            td = person.at_css('.person_bio').text.strip
+            td = person.at_css('.person_bio').text.strip.encode("utf-8", "iso-8859-1")
           - else
             td = person.at_css('.person_fulln').text.strip
             td = person.at_css('.person_scrn').text.strip
             td No location info!
-            td = person.at_css('.person_bio').text.strip
+            td = person.at_css('.person_bio').text.strip.encode("utf-8", "iso-8859-1")
 
