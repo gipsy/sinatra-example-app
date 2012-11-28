@@ -1,24 +1,46 @@
-.search-block
-  form.form-horizontal action='/list' method='post'
-    .input-append
-      input.span6 type='text' name='post[bio]' placeholder='#{@bio}'
-      button.btn type='submit' Find it!
-      /button.btn.options type='button' Options
+- if @reason or @persons.nil? ? nil : @persons.empty?
+  .alert
+    button type="button" class="close" data-dismiss="alert" x
+    strong Warning!
+    - if @reason
+      span #{@reason}
+    - else
+      span Please enter any search criteria.
+  .search-block
+    form.form-horizontal action='/list' method='post'
+      .input-append
+        input.span6 type='text' name='post[bio]' placeholder='#{@bio}'
+        button.btn type='submit' Find it!
+        /button.btn.options type='button' Options
 
-    .extra-block
-      .control-group
-        label.control-label Location
-        .controls
-          input.span2 type='text' name='post[location]' placeholder="#{@location}"
-      .control-group
-        label.control-label Name
-        .controls
-          input.span2 type='text' name='post[name]' placeholder="#{@name}"
+      .extra-block
+        .control-group
+          label.control-label Location
+          .controls
+            input.span2 type='text' name='post[location]' placeholder="#{@location}"
+        .control-group
+          label.control-label Name
+          .controls
+            input.span2 type='text' name='post[name]' placeholder="#{@name}"
 
-- if @reason
-  p #{@reason}
+- else
+  .search-block
+    form.form-horizontal action='/list' method='post'
+      .input-append
+        input.span6 type='text' name='post[bio]' placeholder='#{@bio}'
+        button.btn type='submit' Find it!
+        /button.btn.options type='button' Options
 
-- else  
+      .extra-block
+        .control-group
+          label.control-label Location
+          .controls
+            input.span2 type='text' name='post[location]' placeholder="#{@location}"
+        .control-group
+          label.control-label Name
+          .controls
+            input.span2 type='text' name='post[name]' placeholder="#{@name}"
+
   table.table.table-striped.table-bordered
     thead
       tr
