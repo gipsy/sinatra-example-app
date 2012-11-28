@@ -34,10 +34,10 @@
             td = person.at_css('.person_fulln').text.strip
             td = person.at_css('.person_scrn').text.strip
             td = location.text.strip
-            td = person.at_css('.person_bio').text.strip.encode("utf-8", "iso-8859-1")
+            td = person.at_css('.person_bio').text.strip.encode("utf-8", "utf-8")
           - else
             td = person.at_css('.person_fulln').text.strip
             td = person.at_css('.person_scrn').text.strip
             td No location info!
-            td = person.at_css('.person_bio').text.strip.encode("utf-8", "iso-8859-1")
+            td = person.at_css('.person_bio').text.strip.encode("utf-8", "utf-8")
 
