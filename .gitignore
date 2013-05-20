@@ -1,0 +1,5 @@
+.DS_Store
+tmp/
+.rbenv-version
+vendor/
+.bundle/
